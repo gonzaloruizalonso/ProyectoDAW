@@ -1,0 +1,36 @@
+body {
+  background-image: url(img/fondojpg.jpg);
+}
+
+#bienvenida,#divcarrito {
+  width: 75%;
+  opacity: 0.95;
+  margin-top: 2em;
+  margin-left: 12.5%;
+}
+@media (min-width: 5px) {
+  #login {
+    width: 78%;
+  }
+}
+@media (min-width: 600px) {
+  #login {
+    width: 68%;
+  }
+}
+@media (min-width: 800px) {
+  #login {
+    width: 58%;
+  }
+}
+
+@media (min-width: 1000px) {
+  #login {
+    width: 45%;
+  }
+}
+@media (min-width: 1200px) {
+  #login {
+    width: 30%;
+  }
+}
