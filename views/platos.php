@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css.css" />
     <script type="text/javascript" src="../js.js"></script>
-    <script type="text/javascript" src="../xml2json.js"></script>
     <script type="text/javascript">
         var peticion2;
 
@@ -25,14 +24,14 @@
             }
 
             if (document.addEventListener) {
-                peticion2.addEventListener("readystatechange", carga)
+                peticion2.addEventListener("readystatechange", carga);
             } else if (document.attachEvent) {
-                peticion2.attachEvent("onreadystatechange", carga)
+                peticion2.attachEvent("onreadystatechange", carga);
             }
 
             peticion2.open("GET", "../controllers/getDatosCarrito.php", true);
 
-            peticion2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            peticion2.setRequestHeader("Content-Type","application/json");
 
             peticion2.send(null);
 
@@ -42,16 +41,9 @@
         function carga() {
             if (peticion2.readyState == 4) {
                 if (peticion2.status == 200) {
-                    var datosPlatos = peticion2.responseXML;
-                    var stringPlatos = XMLtoString(datosPlatos);
-                    var x2js = new X2JS();
-                    JSONPlatos = x2js.xml_str2json(stringPlatos);
 
-                    console.log(JSONPlatos);
-                    //var VobObjetoxd=JSON.parse(JSONPlatos);
-                    //console.log(VobObjetoxd);
-
-
+                    var JSONPlatos=JSON.parse(peticion2.response);
+                    //console.log(JSONPlatos);
                     var cookies = document.cookie.split(";");
                     if (cookies.length > 1) {
                         $("#divcarrito").show("slow");

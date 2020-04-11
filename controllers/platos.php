@@ -1,7 +1,7 @@
 <?php
-session_start();
-require("../db/db.php");
-require("../models/listaPlatos.php");
+	session_start();
+	require("../db/db.php");
+	require("../models/listaPlatos.php");
 
     $_SESSION['platos']=getPlatos($conn);
 	//var_dump($_SESSION['platos']);
@@ -14,3 +14,4 @@ require("../models/listaPlatos.php");
 	
 	
 	//var_dump($_POST);
+?>

@@ -5,12 +5,16 @@ require("../models/getDatoCarrito.php");
 
 $dplato=getDatosPlato($conn);
 
-$final='<platos>';
+(object)$miObjeto = array('platos' => array());
 for ($i=0; $i < sizeof($dplato); $i++) {
 	$j=1+$i;
-	$final=$final.'<p'.$j.'><codplato>'.$dplato[$i]['cod_plato'].'</codplato><nombre>'.$dplato[$i]['nombre'].'</nombre><precio>'.$dplato[$i]['precio'].'</precio></p'.$j.'>';
+
+	array_push($miObjeto['platos'],array('codplato' => $dplato[$i]['cod_plato'], 'nombre' => $dplato[$i]['nombre'], 'precio' => $dplato[$i]['precio'] ));
+	
 }
-$final=$final.'</platos>';
-header('Content-Type:text/xml');
-echo $final;
+
+$objetoJson=json_encode($miObjeto);
+
+//Devolver datos
+echo $objetoJson;
 ?>
