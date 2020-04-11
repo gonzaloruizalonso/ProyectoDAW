@@ -28,5 +28,5 @@ INSERT INTO login(dni,password) VALUES ('12345678R','gonzalo');
 INSERT INTO login(dni,password) VALUES ('12345678L','alvaro');
 INSERT INTO login(dni,password) VALUES ('12345678T','jose');
 
-INSERT INTO `pedidos` (`dni`, `cod_pedido`, `fecha_pedido`, `fecha entrega`, `precio_total`) VALUES ('1F', '1', '2000-05-05', '2000-05-10', '20');
+INSERT INTO `pedidos` (`dni`, `cod_pedido`, `fecha_pedido`, `fecha_entrega`, `precio_total`) VALUES ('1F', '1', '2000-05-05', '2000-05-10', '20');
 INSERT INTO `detallepedido` (`cod_detallepedido`, `cod_pedido`, `cod_plato`, `cantidad`) VALUES ('1', '1', '1', '2');

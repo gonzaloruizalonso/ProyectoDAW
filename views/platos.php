@@ -41,9 +41,9 @@
         function carga() {
             if (peticion2.readyState == 4) {
                 if (peticion2.status == 200) {
-
-                    var JSONPlatos=JSON.parse(peticion2.response);
-                    //console.log(JSONPlatos);
+                    //console.log(peticion2.response);
+                    var JSONPlatos=JSON.parse(peticion2.responseText);
+                    console.log(JSONPlatos);
                     var cookies = document.cookie.split(";");
                     if (cookies.length > 1) {
                         $("#divcarrito").show("slow");
@@ -134,7 +134,7 @@
     if (empty($_SESSION['dni'])) {
     ?>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <a href=""><strong>Necesario iniciar sesion/registrarse</strong> Para añadir platos al carrito.</a>
+            Necesario <strong><a href="../controllers/login.php">iniciar sesion/registrarse</strong></a> Para añadir platos al carrito.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -157,7 +157,7 @@
                     </div>
                     <button class="btn btn-warning" onclick="deleteAllCookies()">Borrar carrito</button>
 
-                    <form action="../controllers/procesar_carrito.php">
+                    <form action="../controllers/formulario_carrito.php">
                         <button class="btn btn-warning"> Procesar carrito</button> </form>
                 </div>
             </div>
@@ -187,15 +187,17 @@
 
                         ?>
 
-                            <div class="card-body col-12 col-md-6 col-lg-4">
-                                <div class="card-deck">
+                            <div class="card-deck col-12 col-md-6 col-lg-4 ">
+                                <div class="card-body">
                                     <div class="card">
                                         <img height="200px" class='card-img-top' src="../img/<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>.jpg">
                                         <?php
+                                        echo "<div class='card-header bg-info'> <h5>" . $_SESSION["platos"][$i]["nombre"] . "</h5></div>";
 
-                                        echo "<h5 class='card-title'>" . $_SESSION["platos"][$i]["nombre"] . "</h5>";
+                                        //echo $_SESSION['platos'][$i]['descripcion'];
                                         ?>
-                                        <p class="card-text"><?php echo $_SESSION['platos'][$i]['descripcion']; ?></p>
+
+                                        <div class="card-footer bg-info"><?php echo "Precio: " . $_SESSION["platos"][$i]["precio"] . "€"; ?></div>
 
                                         <?php
                                         if (!empty($_SESSION['dni'])) {
@@ -225,7 +227,6 @@
 
                             </div>
                         <?php
-
                         }
 
                         ?>

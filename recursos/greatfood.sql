@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `dni` varchar(9) NOT NULL,
   `cod_pedido` varchar(45) NOT NULL,
   `fecha_pedido` datetime NOT NULL,
-  `fecha entrega` datetime DEFAULT NULL,
+  `fecha_entrega` datetime DEFAULT NULL,
   `precio_total` double DEFAULT NULL,
   PRIMARY KEY (`cod_pedido`),
   CONSTRAINT fk_pedidos_clientes FOREIGN KEY(dni) REFERENCES clientes(dni)

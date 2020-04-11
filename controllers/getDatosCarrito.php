@@ -1,7 +1,7 @@
 <?php
 require_once("../db/db.php");
 require("../models/getDatoCarrito.php");
-
+header('Content-Type: application/json; charset=utf-8');
 
 $dplato=getDatosPlato($conn);
 

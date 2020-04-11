@@ -29,9 +29,9 @@
                     <a class="nav-link " href="contacto.php" tabindex="-1">Contacto</a>
                 </li>
                 <li class="nav-item ">
-                   <?php
-                    session_start();
-                    require_once("../db/db.php");
+                    <?php
+                    //session_start();
+                    //require_once("../db/db.php");
                     if (isset($_SESSION['dni'])) {
                     ?>
                         <a class="nav-link " href="../controllers/area_personal.php" tabindex="-1">
@@ -59,14 +59,14 @@
             </ul>
         </div>
     </nav>
-        <div id="bienvenida">
+    <div id="bienvenida">
 
         <div class="card">
             <div class="card-body ">
                 <h4 class="card-title">Historial</h4>
                 <p class="card-text ">Consulte sus pedidos</p>
                 <?php
-                $array = [];
+
                 ?>
                 <table class="table table-dark">
                     <thead>
@@ -79,18 +79,15 @@
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "SELECT * from pedidos where dni='$_SESSION[dni]'";
 
-                        $variable = mysqli_query($conn, $sql);
-                        $varibale2 = mysqli_fetch_assoc($variable);
-                        $array = $varibale2;
                         //Aqui debajo irian el historial
                         //var_dump($array);
-            
+
                         echo "<tr>
+                        
                             <th scope='row'>$array[cod_pedido]</th>
                             <td>$array[fecha_pedido]</td>
-                            <td>".$array["fecha entrega"]."</td>
+                            <td>" . $array["fecha entrega"] . "</td>
                             <td>$array[precio_total]</td>
                         </tr>";
                         ?>
