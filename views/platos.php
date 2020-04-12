@@ -52,18 +52,26 @@
 
                         var cookies = document.cookie.split(";");
                         //alert(cookies.length);
+                        var preciototal=0;
                         for (var i = 0; i < cookies.length; i++) {
                             var cookie = cookies[i];
                             var eqPos = cookie.indexOf("=");
                             var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
                             if (String(name) != "PHPSESSID") {
                                 var idAux = String(name);
+
                                 for (var clave in JSONPlatos.platos) {
                                     if (JSONPlatos.platos.hasOwnProperty(clave)) {
                                         var a = parseInt(JSONPlatos.platos[clave].codplato);
                                         var b = parseInt(idAux);
                                         if (a == b) {
-                                            $("#rowcarrito").after('<p>Nombre=' + JSONPlatos.platos[clave].nombre + " Precio=" + JSONPlatos.platos[clave].precio + ' Cantidad=' + getCookie(idAux) + '</p>');
+                                            $("#listcarrito").append(
+                                                 '<li class="list-group-item d-flex justify-content-between align-items-center">'
+                                                     + JSONPlatos.platos[clave].nombre +
+                                                     " " + JSONPlatos.platos[clave].precio +'€ <span class="badge badge-info badge-pill">' + getCookie(idAux) + '</span></li>');
+
+
+                                            preciototal=parseInt(preciototal)+(parseInt(JSONPlatos.platos[clave].precio)*parseInt(getCookie(idAux)));
                                         }
                                     }
                                 }
@@ -71,7 +79,7 @@
                             }
 
                         }
-
+                        $("#buttonaux").before('<p>Total: '+preciototal+'€</p>');
                         //--------------                                                
 
                     }
@@ -151,14 +159,17 @@
                 <hr>
                 <div class="container">
                     <div class="row" id="rowcarrito">
-                        <script type="text/javascript">
+                        <ul class="list-group" id="listcarrito">
 
-                        </script>
+                        </ul>
                     </div>
-                    <button class="btn btn-warning" onclick="deleteAllCookies()">Borrar carrito</button>
+                    
+                    <button id="buttonaux" class="btn btn-warning d-inline-block" onclick="deleteAllCookies()">Borrar carrito</button>
 
-                    <form action="../controllers/formulario_carrito.php">
-                        <button class="btn btn-warning"> Procesar carrito</button> </form>
+                    <form action="../controllers/formulario_carrito.php" class="d-inline-block">
+                        <button class="btn btn-warning"> Procesar carrito</button> 
+                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -192,14 +203,15 @@
                                     <div class="card">
                                         <img height="200px" class='card-img-top' src="../img/<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>.jpg">
                                         <?php
-                                        echo "<div class='card-header bg-info'> <h5>" . $_SESSION["platos"][$i]["nombre"] . "</h5></div>";
+                                        echo "<div class='card-header bg-info infoplato'> <h5>" . $_SESSION["platos"][$i]["nombre"] . "</h5></div>";
 
                                         //echo $_SESSION['platos'][$i]['descripcion'];
                                         ?>
 
-                                        <div class="card-footer bg-info"><?php echo "Precio: " . $_SESSION["platos"][$i]["precio"] . "€"; ?></div>
+                                        <div class="card-footer bg-info infoplato"><?php echo "Precio: " . $_SESSION["platos"][$i]["precio"] . "€"; ?></div>
 
                                         <?php
+                                        //A JS No Le Gustan Las Ñ
                                         if (!empty($_SESSION['dni'])) {
                                         ?>
                                             <input type="submit" name="<?php echo $_SESSION['platos'][$i]['nombre'] ?>" value="Añadir" class="btn btn-warning " onclick="on<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>()" id="<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>" />

@@ -1,7 +1,10 @@
 body {
   background-image: url(img/fondojpg.jpg);
 }
-
+.infoplato{
+  color: white;
+  text-shadow: 1.5px 1.5px 0px #000000;
+}
 #bienvenida,#divcarrito {
   width: 75%;
   opacity: 0.95;
@@ -12,15 +15,24 @@ body {
   #login {
     width: 78%;
   }
+  #listcarrito{
+   width: 90%; 
+  }
 }
 @media (min-width: 600px) {
   #login {
     width: 68%;
   }
+  #listcarrito{
+   width: 70%; 
+  }
 }
 @media (min-width: 800px) {
   #login {
     width: 58%;
+  }
+  #listcarrito{
+   width: 50%; 
   }
 }
 
@@ -28,9 +40,15 @@ body {
   #login {
     width: 45%;
   }
+  #listcarrito{
+   width: 39%; 
+  }
 }
 @media (min-width: 1200px) {
   #login {
     width: 30%;
+  }
+  #listcarrito{
+   width: 28%; 
   }
 }

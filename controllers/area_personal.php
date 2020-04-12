@@ -67,7 +67,7 @@
     <div class="card">
       <div class="card-body ">
         <h4 class="card-title">Area personal</h4>
-        <p class="card-text ">Comidas a domicilio.</p><br>
+        <hr>
         <a href="cambiarContraseña.php" class="btn btn-warning ">Cambiar Contraseña</a><br><br>
         <a href="historial_compras.php" class="btn btn-warning ">Historial Pedidos</a>
       </div>

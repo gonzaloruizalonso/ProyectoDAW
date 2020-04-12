@@ -6,4 +6,10 @@ require_once("../models/historial.php");
 
 
 $array = mirar_historial($conn);
+
+$_SESSION['array1']=$array[0];
+$_SESSION['array2']=$array[1];
+//var_dump($array);
+
 require_once("../views/historial.php");
+?>

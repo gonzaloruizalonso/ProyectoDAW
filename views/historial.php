@@ -68,10 +68,10 @@
                 <?php
 
                 ?>
-                <table class="table table-dark">
+                <table class="table table-dark table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Numero de pedido</th>
                             <th scope="col">Fecha Pedido</th>
                             <th scope="col">Fecha de Entrega</th>
                             <th scope="col">Precio total</th>
@@ -83,13 +83,35 @@
                         //Aqui debajo irian el historial
                         //var_dump($array);
 
-                        echo "<tr>
-                        
-                            <th scope='row'>$array[cod_pedido]</th>
-                            <td>$array[fecha_pedido]</td>
-                            <td>" . $array["fecha entrega"] . "</td>
-                            <td>$array[precio_total]</td>
+                        for ($i = 0; $i < sizeof($_SESSION["array1"]); $i++) {
+                            echo "<script>console.log(" . $i . ")</script>";
+                            echo "<tr>
+                            <th class='bg-primary' scope='row'>" . $_SESSION["array1"][$i]["cod_pedido"] . "</th>
+                            <td class='bg-primary'>" . $_SESSION["array1"][$i]["fecha_pedido"] . "</td>
+                            <td class='bg-primary'>" . $_SESSION["array1"][$i]["fecha_entrega"] . "</td>
+                            <td class='bg-primary'>" . $_SESSION["array1"][$i]["precio_total"] . "</td>
+                        </tr>
+                          
+                        <tr>
+                            <th class='bg-info' scope='col'>#</th>
+                            <th class='bg-info' scope='col'>Nombre</th>
+                            <th class='bg-info' scope='col'>Cantidad</th>
+                            <th class='bg-info' scope='col'>Precio</th>
+                            
                         </tr>";
+                            for ($j = 0; $j < sizeof($_SESSION["array2"]); $j++) {
+                                if ($_SESSION["array2"][$j]["cod_pedido"] == $_SESSION["array1"][$i]["cod_pedido"]) {
+
+                                    echo "<tr>
+                                <th class='bg-info' scope='row'>#</th>
+                                <td class='bg-info'>" . $_SESSION["array2"][$j]["nombre"] . "</td>
+                                <td class='bg-info'>" . $_SESSION["array2"][$j]["cantidad"] . "</td>
+                                <td class='bg-info'>" . $_SESSION["array2"][$j]["precio"] . "</td>
+                                </tr>";
+                                }
+                            }
+                        }
+
                         ?>
                     </tbody>
                 </table>

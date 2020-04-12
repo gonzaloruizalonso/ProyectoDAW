@@ -23,47 +23,44 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link " href="platos.html" tabindex="-1">Platos</a>
+                    <a class="nav-link " href="../controllers/platos.php" tabindex="-1">Platos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#" tabindex="-1">Contacto</a>
                 </li>
                 <li class="nav-item ">
-                    <?php
+                     <?php
                     session_start();
                     require_once("../db/db.php");
+                    if (isset($_SESSION['dni'])) {
                     ?>
-                    <a class="nav-link " href="#" tabindex="-1">
-                        Login
+                        <a class="nav-link " href="../controllers/area_personal.php" tabindex="-1">
+                            Area personal
+                        </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="../controllers/logout.php" tabindex="-1">
+                        Logout
                     </a>
                 </li>
-
-
+            <?php
+                    } else {
+                        header("location:../index.php");
+                    }
+            ?>
             </ul>
         </div>
     </nav>
-    <?php
-    if (isset($_SESSION['fallo'])) {
-        if ($_SESSION['fallo'] == "login") {
-    ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Datos incorrectos</strong> Prueba otra vez.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-    <?php
-        }
-    }
-    ?>
     <div id="bienvenida">
 
         <div class="card">
             <div class="card-body ">
                 <h4 class="card-title">Peticion enviada con exito</h4>
-                Nos pondremos en contacto contigo lo antes posible.
+                <?php 
+                echo $_SESSION['resultadocarrito'];
+                 ?>
                 <br>
-                <a class="btn btn-warning" href="../../index.php"> Volver a inicio </a>
+                <a class="btn btn-warning" href="../index.php"> Volver a inicio </a>
             </div>
         </div>
 

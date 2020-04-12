@@ -73,11 +73,46 @@
 
     <div class=" card" >
       <div class="card-body ">
-        <h4 class="card-title">Bienvenido a GreatFood</h4>
-        <p class="card-text ">Comidas a domicilio.</p><br>
-        <a href="controllers/platos.php" class="btn btn-warning ">¡Conoce nuestra carta!</a>
+        <?php 
+          if (isset($_SESSION['dni'])) {
+            echo "<h4 class=\"card-title\">Hola ".$_SESSION['nombre']."</h4>";
+          }else{
+            echo "<h4 class=\"card-title\">¡Bienvenido!</h4>";
+          }
+
+         ?>
+        <p class="card-text ">Pide tus comidas a domicilio favoritas con GreatFood.</p><br>
+        <a href="controllers/platos.php" class="btn btn-warning ">Conoce nuestra carta</a>
       </div>
-      <img class="card-img-top" src="img/logo.png" alt="Logo" width="30%">
+      <div id="car" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#car" data-slide-to="0" class="active"></li>
+        <li data-target="#car" data-slide-to="1"></li>
+        <li data-target="#car" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/logo.png" class="d-block" width="100%" alt="logo">
+            <div class="carousel-caption d-none d-md-block">
+              <p>GreatFood</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="img/car1.jpg" class="d-block" width="100%" alt="">
+        </div>
+        <div class="carousel-item">
+            <img src="img/car2.jpg" class="d-block" width="100%" alt="">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#car" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next" href="#car" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+      </a>
+    </div>
     </div>
 
   </div>

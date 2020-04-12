@@ -20,7 +20,7 @@ INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('3','Pizza Barba
 INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('4','Pizza Queso De Cabra','Pizza de queso de cabra','13');
 INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('5','Pizza Queso De Cabramelizada','Pizza de queso de cabra con cebolla caramelizada','12');
 INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('6','Pizza Jamon Y Queso','Pizza de jamon y queso','9');
-INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('7','Pizza Peperoni y jalapeños','Pizza de peperoni y jalapeños','16');
+INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('7','Pizza Peperoni','Pizza de peperoni y jalapeños','16');
 INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('8','Arroz 3 delicias','Arroz con huevo guisantes y jamon','5');
 INSERT INTO platos(cod_plato,nombre,descripcion,precio) VALUES ('9','Arroz con calamares en su tinta','','10');
 
