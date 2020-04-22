@@ -84,7 +84,7 @@
                         //var_dump($array);
 
                         for ($i = 0; $i < sizeof($_SESSION["array1"]); $i++) {
-                            echo "<script>console.log(" . $i . ")</script>";
+                            echo "<script>console.log(" . $_SESSION["array1"][$i]["cod_pedido"] . ")</script>";
                             echo "<tr>
                             <th class='bg-primary' scope='row'>" . $_SESSION["array1"][$i]["cod_pedido"] . "</th>
                             <td class='bg-primary'>" . $_SESSION["array1"][$i]["fecha_pedido"] . "</td>

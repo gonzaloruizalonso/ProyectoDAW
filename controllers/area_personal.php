@@ -33,6 +33,13 @@
           session_start();
           $_SESSION['passwordFail'] = false;
           require_once("../db/db.php");
+          require_once("../models/area_personal.php");
+
+          $dniAux=$_SESSION['dni'];
+
+          $_SESSION['resDNI']=comprobarPedidos($conn,$dniAux);
+
+
           $_SESSION['fallo'] = "no";
           if (isset($_SESSION['dni'])) {
           ?>
@@ -69,7 +76,15 @@
         <h4 class="card-title">Area personal</h4>
         <hr>
         <a href="cambiarContraseña.php" class="btn btn-warning ">Cambiar Contraseña</a><br><br>
+        <?php 
+        echo "<script>console.log(" . $_SESSION['resDNI'] . ")</script>";
+        echo "<script>console.log(" . $_SESSION['dni'] . ")</script>";
+        if ($_SESSION['resDNI']==$_SESSION['dni']) {
+          ?>
         <a href="historial_compras.php" class="btn btn-warning ">Historial Pedidos</a>
+          <?php
+        }
+         ?>
       </div>
     </div>
   </div>

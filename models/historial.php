@@ -9,7 +9,7 @@
             $array1[] = $row;
         }
 
-        $sql2 = "select detallepedido.cod_pedido,platos.nombre,detallepedido.cantidad, platos.precio from detallepedido,platos where detallepedido.cod_plato=platos.cod_plato AND cod_pedido in (select cod_pedido from pedidos where dni='$_SESSION[dni]')";
+        $sql2 = "select detallepedido.cod_pedido,platos.nombre,detallepedido.cantidad,  platos.precio from detallepedido,platos where detallepedido.cod_plato=platos.cod_plato AND cod_pedido in (select cod_pedido from pedidos where dni='$_SESSION[dni]')";
 
         $resultado = mysqli_query($conn, $sql2);
         while ($row = mysqli_fetch_assoc($resultado)) {
