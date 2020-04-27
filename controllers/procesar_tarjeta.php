@@ -63,24 +63,17 @@
 
 <div class="card">
     <div class="card-body ">
-    <h4 class="card-title">Su pedido esta casi listo</h4>
-    <p class="card-text " >Rellena estos datos para continuar</p>
+    <h4 class="card-title">Método de Pago</h4>
     
 
-    <form action="" method="POST">
-    <hr>
-        <div class="form-group" id="login">
-        Fecha Entrega: <input type="date" <?php 
-               $date_format = 'Y-m-d';            
-               $tomorrow = time() + (1 * 24 * 60 * 60);
-               echo "min=\"".gmdate($date_format, $tomorrow)."\"";
-             ?> name="fecha_entrega" class="form-control" required>
-        Metodo de Pago: 
-        <select id="pago" name="pago" class="form-control" required>
-          <option value="Tarjeta">Tarjeta</option>
-          <option value="PayPal">PayPal</option>
-          <option value="Bizum">Bizum</option>
-        </select><br>
+    <form action="" method="POST"><hr>
+    
+		<h6>Número de Tarjeta</h6>
+        <input type="number" name="numTarjeta" pattern="(\d{16})"><hr>
+		<h6>Caducidad</h6>
+        <input type="month" name="caducidad"><hr>
+		<h6>CVV</h6>
+        <input type="number" name="cvv" pattern="(\d{3})"><hr>
         <input type="submit" value="Confirmar" name="confirmar" class="btn btn-warning ">
     
         </div>
@@ -94,13 +87,7 @@
 	<?php
 	
 	if (isset($_POST["confirmar"])) {
-		$_SESSION['fecha_entrega']=$_POST["fecha_entrega"];
-		//header("location:procesar_carrito.php");
-		if ($_POST["pago"]=="Tarjeta" || $_POST["pago"]=="PayPal") {
-			header("location:procesar_tarjeta.php");
-		}
-		
-		
+		header("location:procesar_carrito.php");
 	}
 	?>
     </div>

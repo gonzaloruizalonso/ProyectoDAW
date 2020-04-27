@@ -99,7 +99,7 @@
 	<form action="main.php" method="POST">
     <hr>
 		<div class="form-group" id="login">
-		<p>DNI:<input type="text" name="dni" class="form-control" required/></p>
+		<p>DNI:<input type="text" name="dni" class="form-control" pattern="(\d{8})([A-Z]{1})" required/></p>
 		<p>Contraseña:<input type="password" name="password" class="form-control" required/></p><br />
    
 		<input type="submit" value="Login" class="btn btn-warning "/>

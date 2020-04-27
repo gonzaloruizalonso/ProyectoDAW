@@ -78,7 +78,7 @@
                 </li>
                 <li class="nav-item ">
                     <?php
-                    //session_start();
+                    session_start();
                     require_once("../db/db.php");
                     ?>
                     <a class="nav-link " href="login.php" tabindex="-1">
@@ -92,7 +92,7 @@
     </nav>
     <?php
     if (isset($_SESSION['fallo'])) {
-        if ($_SESSION['fallo'] == "registro") {
+        if ($_SESSION['fallo'] == "registro") {;
     ?>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>DNI incorrecto</strong> Ya existe un usuario con ese DNI.
@@ -114,22 +114,23 @@
 
                 <form method="POST" action="procesar_registro.php">
                     <div class="form-group" id="login">
-                        <p>DNI<input type="text" name="dni" class="form-control" required /></p>
+                        <p>DNI<input type="text" name="dni" class="form-control" pattern="(\d{8})([A-Z]{1})" required /></p>
 						<p>Contraseña<input type="password" name="password" class="form-control" required /></p>
                         <p>Nombre:<input type="text" name="nombre" class="form-control" required /></p>
                         <p>Apellidos:<input type="text" name="apellidos" class="form-control" required /></p>
                         <p>Direccion:<input type="text" name="direccion" class="form-control" required /></p>
-						<p>Codigo Postal<input type="text" name="cp" class="form-control" required /></p>
+						<p>Codigo Postal<input type="number" name="cp" class="form-control" pattern="(\d{5})" required /></p>
                         <p>Municipio:<select id="miselect" name="municipio" class="form-control" required></select></p>
-                        <p>Teléfono:<input type="tel" name="telefono" class="form-control" required /></p>
-                        <p>Fecha de Nacimiento:<input type="date" name="fecha_nac" class="form-control" required /></p>
-                        <input type="submit" value="Regístrate" class="btn btn-warning " />
+                        <p>Teléfono:<input type="number" name="telefono" class="form-control" pattern="(\d{9})" required /></p>
+                        <p>Fecha de Nacimiento:<input type="date" name="fecha_nac" class="form-control" pattern="/^(?:(?:(?:0?[1-9]|1\d|2[0-8])[/](?:0?[1-9]|1[0-2])|(?:29|30)[/](?:0?[13-9]|1[0-2])|31[/](?:0?[13578]|1[02]))[/](?:0{2,3}[1-9]|0{1,2}[1-9]\d|0?[1-9]\d{2}|[1-9]\d{3})|29[/]0?2[/](?:\d{1,2}(?:0[48]|[2468][048]|[13579][26])|(?:0?[48]|[13579][26]|[2468][048])00))$/" required /></p>
+                        <p>Correo Electrónico<input type="text" name="mail" class="form-control" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required /></p>
+						<input type="submit" value="Regístrate" class="btn btn-warning " />
                         <br>
                     </div>
                 </form>
 				<?php
 					if ($_POST!=null) {
-						require("../models/registro.php");
+						require("../models/registro.php");	
 					}
 				?>
             </div>
