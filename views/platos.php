@@ -31,7 +31,7 @@
 
             peticion2.open("GET", "../controllers/getDatosCarrito.php", true);
 
-            peticion2.setRequestHeader("Content-Type","application/json");
+            peticion2.setRequestHeader("Content-Type", "application/json");
 
             peticion2.send(null);
 
@@ -42,7 +42,7 @@
             if (peticion2.readyState == 4) {
                 if (peticion2.status == 200) {
                     //console.log(peticion2.response);
-                    var JSONPlatos=JSON.parse(peticion2.responseText);
+                    var JSONPlatos = JSON.parse(peticion2.responseText);
                     console.log(JSONPlatos);
                     var cookies = document.cookie.split(";");
                     if (cookies.length > 1) {
@@ -52,7 +52,7 @@
 
                         var cookies = document.cookie.split(";");
                         //alert(cookies.length);
-                        var preciototal=0;
+                        var preciototal = 0;
                         for (var i = 0; i < cookies.length; i++) {
                             var cookie = cookies[i];
                             var eqPos = cookie.indexOf("=");
@@ -66,12 +66,12 @@
                                         var b = parseInt(idAux);
                                         if (a == b) {
                                             $("#listcarrito").append(
-                                                 '<li class="list-group-item d-flex justify-content-between align-items-center">'
-                                                     + JSONPlatos.platos[clave].nombre +
-                                                     " " + JSONPlatos.platos[clave].precio +'€ <span class="badge badge-info badge-pill">' + getCookie(idAux) + '</span></li>');
+                                                '<li class="list-group-item d-flex justify-content-between align-items-center">' +
+                                                JSONPlatos.platos[clave].nombre +
+                                                " " + JSONPlatos.platos[clave].precio + '€ <span class="badge badge-info badge-pill">' + getCookie(idAux) + '</span></li>');
 
 
-                                            preciototal=parseInt(preciototal)+(parseInt(JSONPlatos.platos[clave].precio)*parseInt(getCookie(idAux)));
+                                            preciototal = parseInt(preciototal) + (parseInt(JSONPlatos.platos[clave].precio) * parseInt(getCookie(idAux)));
                                         }
                                     }
                                 }
@@ -79,7 +79,7 @@
                             }
 
                         }
-                        $("#buttonaux").before('<p>Total: '+preciototal+'€</p>');
+                        $("#buttonaux").before('<p>Total: ' + preciototal + '€</p>');
                         //--------------                                                
 
                     }
@@ -163,13 +163,13 @@
 
                         </ul>
                     </div>
-                    
+
                     <button id="buttonaux" class="btn btn-warning d-inline-block" onclick="deleteAllCookies()">Borrar carrito</button>
 
                     <form action="../controllers/formulario_carrito.php" class="d-inline-block">
-                        <button class="btn btn-warning"> Procesar carrito</button> 
+                        <button class="btn btn-warning"> Procesar carrito</button>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -182,22 +182,13 @@
 
                 <hr>
                 <?php
-
-
                 ?>
-
-
                 <div class="container">
 
                     <div class="row">
-
-
                         <?php
-
                         for ($i = 0; $i < sizeof($_SESSION["platos"]); $i++) {
-
                         ?>
-
                             <div class="card-deck col-12 col-md-6 col-lg-4 ">
                                 <div class="card-body">
                                     <div class="card">
@@ -232,25 +223,15 @@
                                         <?php
                                         }
                                         ?>
-
-
                                     </div>
                                 </div>
 
                             </div>
                         <?php
                         }
-
                         ?>
                     </div>
-
-
-
-
                 </div>
-
-
-
                 </form>
             </div>
         </div>

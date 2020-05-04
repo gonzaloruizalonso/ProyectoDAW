@@ -29,13 +29,13 @@
                     <a class="nav-link " href="../controllers/contacto.php" tabindex="-1">Contacto</a>
                 </li>
                 <li class="nav-item ">
-                     <?php
+                    <?php
                     session_start();
                     require_once("../db/db.php");
                     ?>
-                        <a class="nav-link " href="../controllers/area_personal.php" tabindex="-1">
-                            Area personal
-                        </a>
+                    <a class="nav-link " href="../controllers/area_personal.php" tabindex="-1">
+                        Area personal
+                    </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link " href="../controllers/logout.php" tabindex="-1">
@@ -51,19 +51,34 @@
             <div class="card-body ">
                 <h4 class="card-title">Carrito procesado con exito.</h4>
                 <hr>
-                <?php 
+                <?php
                 echo $_SESSION['resultadocarrito'];
-                 ?>
-                 <script type="text/javascript">
-                     deleteAllCookies2();
-                 </script>
+                ?>
+                <script type="text/javascript">
+                    deleteAllCookies2();
+                </script>
                 <br><br>
                 <a class="btn btn-warning" href="../index.php"> Volver a inicio </a>
             </div>
         </div>
 
     </div>
+    <footer class="footer">
+        <div class="container">
 
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="text-center">Copyright @2020 | Diseñado por <a href="#">Greatfood</a></p>
+
+            <ul class="social_footer_ul">
+                <li><a href="http://facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="http://twitter.com"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="http://youtube.com"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="http://instagram.com"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+
+    </footer>
 </body>
 
 </html>

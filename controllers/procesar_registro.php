@@ -19,8 +19,10 @@ if ($dnireal==null) {
 	$mensaje=$nombre.', su registro se ha completado correctamente, gracias por usar GreatFood. Puedes iniciar sesion utilizando su DNI '.$dni.' y su contraseña.';
 	procesar($conn);
 	enviarCorreo($correo_electronico,'Registro completado en GreatFood',$mensaje,$nombre);
-	header("location:./login.php");
 	$_SESSION['fallo']="no";	
+	echo "<script type=\"text/javascript\">location.href='login.php';
+			</script>";
+	//header("location:./login.php");
 }else {
 	$_SESSION['fallo']="registro";
 	header("location:./registro.php");

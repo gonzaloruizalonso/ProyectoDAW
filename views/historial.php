@@ -120,7 +120,22 @@
         </div>
 
     </div>
+    <footer class="footer">
+        <div class="container">
 
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="text-center">Copyright @2020 | Diseñado por <a href="#">Greatfood</a></p>
+
+            <ul class="social_footer_ul">
+                <li><a href="http://facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="http://twitter.com"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="http://youtube.com"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="http://instagram.com"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+
+    </footer>
 </body>
 
 </html>

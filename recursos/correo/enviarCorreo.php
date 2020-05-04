@@ -11,7 +11,7 @@
 
 		$mail = new PHPMailer;
 		$mail->isSMTP(); 
-		$mail->SMTPDebug = 2; 
+		$mail->SMTPDebug = 0; 
 		$mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 		$mail->Port = 587; // TLS only
 		$mail->SMTPSecure = 'tls'; // ssl is depracated
@@ -25,11 +25,7 @@
 		$mail->AltBody = 'HTML no soportado';
 		// $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
-		if(!$mail->send()){
-		    echo "Mailer Error: " . $mail->ErrorInfo;
-		}else{
-		    echo "Message sent!";
-		}
+		$mail->send();
 
 	}
  ?>
