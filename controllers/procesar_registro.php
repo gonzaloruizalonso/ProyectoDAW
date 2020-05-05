@@ -13,6 +13,7 @@ $dnireal=comprobarDNI($conn);
 
 
 if ($dnireal==null) {
+
 	$nombre=$_POST["nombre"];
 	$dni=$_POST["dni"];
 	$correo_electronico=$_POST["mail"];

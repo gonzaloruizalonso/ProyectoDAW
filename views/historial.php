@@ -10,6 +10,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script type="text/javascript" src="../js.js"></script>
 </head>
 
@@ -120,22 +121,7 @@
         </div>
 
     </div>
-    <footer class="footer">
-        <div class="container">
 
-            <!--foote_bottom_ul_amrc ends here-->
-            <p class="text-center">Copyright @2020 | Diseñado por <a href="#">Greatfood</a></p>
-
-            <ul class="social_footer_ul">
-                <li><a href="http://facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="http://twitter.com"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="http://youtube.com"><i class="fab fa-youtube"></i></a></li>
-                <li><a href="http://instagram.com"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-            <!--social_footer_ul ends here-->
-        </div>
-
-    </footer>
 </body>
 
 </html>

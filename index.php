@@ -76,6 +76,7 @@
       <div class="card-body ">
         <?php
         if (isset($_SESSION['dni'])) {
+			//var_dump($_SESSION);
           echo "<h4 class=\"card-title\">Hola " . $_SESSION['nombre'] . "</h4>";
         } else {
           echo "<h4 class=\"card-title\">¡Bienvenido!</h4>";
@@ -116,10 +117,11 @@
       </div>
     </div>
   </div>
+
   <!--footer starts from here-->
   <footer class="footer">
     <div class="container">
- 
+ <hr>
       <!--foote_bottom_ul_amrc ends here-->
       <p class="text-center">Copyright @2020 | Diseñado por <a href="#">Greatfood</a></p>
 

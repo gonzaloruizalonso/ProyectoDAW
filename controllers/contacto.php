@@ -70,12 +70,10 @@
                 Si tienes cualquier problema sobre el producto o sobre el funcionamiento de la pagina no dude en contactarnos.
                 <hr>
 
-                <form action="datos.php" method="POST">
+                <form action="#" method="POST">
                     <div class="form-group" id="login">
-                        <p>Nombre*<input type="text" name="name" class="form-control" required /></p>
-                        <p>Apellido*:<input type="text" name="lastname" class="form-control" required /></p><br />
-                        <p>Teléfono(Opcional):<input type="tel" name="telefono" class="form-control" /></p><br />
-                        <p>Numero de pedido*:<input type="text" name="num_pedido" class="form-control" required /></p><br />
+                        
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
                         <input type="submit" value="Envio" class="btn btn-warning " />
                         <br>
                         <p color="red">*:son obligatorios</p>

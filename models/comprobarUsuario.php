@@ -13,11 +13,13 @@ function comprobarUsuario($conn) {
 		if($clave==$passwordReal){
 		$resultado=true;
 		$_SESSION['dni']=$dni;
-		$sql2="SELECT nombre as n FROM clientes WHERE dni='$dni'";
+		$sql2="SELECT nombre as n,correo_electronico as correo FROM clientes WHERE dni='$dni'";
 		$result = mysqli_query($conn, $sql2);
 		$fila = mysqli_fetch_assoc($result);
 		$nom = $fila['n'];
+		$correo = $fila['correo'];
 		$_SESSION['nombre']=$nom;
+		$_SESSION['correo']=$correo;
 		}
 		
 	return $resultado;
