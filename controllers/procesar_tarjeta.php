@@ -55,39 +55,40 @@
 
             <?php
                     }
-					/*include "../recursos/tpv/apiRedsys.php";  
-					$url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
+					include "apiRedsys.php";  
 					$miObj = new RedsysAPI;
-					$version = "HMAC_SHA256_V1"; 
-					$clave = 'CLAVE';
-					$name = 'GreatFood';
-                    $code = '5 ';
-                    $terminal='1';
-                    $order=5;
-                    $totalpedido=3;
-                    $amount=200;
-                    $currency = '978';
-                    $consumerlng = '001';
-                    $transactionType = '0';
-                    $urlMerchant = 'http://www.daw.com'; // URL DEL COMERCIO CMS
-                    $urlweb_ok = 'http://www.daw.com'; // URL OK
-                    $urlweb_ko = 'http://www.daw.com'; // URL NOK
-                    $concepto ='Prueba';
 
-                    $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
-                    $miObj->setParameter("DS_MERCHANT_CURRENCY",$currency);
-                    $miObj->setParameter("DS_MERCHANT_ORDER",$order);
-                    $miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$code);
-                    $miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
-                    $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$transactionType);
-                    $miObj->setParameter("DS_MERCHANT_MERCHANTURL",$urlMerchant);
-                    $miObj->setParameter("DS_MERCHANT_URLOK",$urlweb_ok);      
-                    $miObj->setParameter("DS_MERCHANT_URLKO",$urlweb_ko);
-                    $miObj->setParameter("DS_MERCHANT_MERCHANTNAME",$name); 
-                    $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE",$consumerlng); 
-                    $miObj->setParameter("DS_MERCHANT_PRODUCTDESCRIPTION",$concepto); 
+					// Valores de entrada que no hemos cmbiado para ningun ejemplo
+					$name = 'GreatFood';
+					
+					$fuc="999008881";
+					$terminal="1";
+					$moneda="978";
+					$trans="0";
+					$url="http://www.daw.com/controllers/procesar_carrito.php";
+					$urlOKKO="http://www.daw.com/controllers/procesar_carrito.php";
+					$id=time();
+					$amount="145";	
+					
+					// Se Rellenan los campos
+					$miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
+					$miObj->setParameter("DS_MERCHANT_ORDER",$id);
+					$miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$fuc);
+					$miObj->setParameter("DS_MERCHANT_CURRENCY",$moneda);
+					$miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$trans);
+					$miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
+					$miObj->setParameter("DS_MERCHANT_MERCHANTURL",$url);
+					$miObj->setParameter("DS_MERCHANT_MERCHANTNAME",$name); 
+					$miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
+					$miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
+
+					//Datos de configuración
+					$version="HMAC_SHA256_V1";
+					$kc = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';//Clave recuperada de CANALES
+					// Se generan los parámetros de la petición
+					$request = "";
 					$params = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);*/
+					$signature = $miObj->createMerchantSignature($kc);
             ?>
             </ul>
         </div>
@@ -99,11 +100,11 @@
                 <h4 class="card-title">Método de Pago</h4>
 
 
-				<form action="procesar_carrito.php" method="POST">
-				<!--<form id="realizarPago" action="<?php echo $url_tpv; ?>" method="post" target="_self">-->
+				<!--<form action="procesar_carrito.php" method="POST">-->
+				<form id="realizarPago" action="https://sis-i.redsys.es:25443/sis/realizarPago" method="post" target="_self">
                     <hr>
 
-                    <h6>Número de Tarjeta</h6>
+                    <!--<h6>Número de Tarjeta</h6>
                     <input  name="numTarjeta" pattern="[0-9]{16}" required>
                     <hr>
 					<h6>Fecha Caducidad:</h6><hr> 
@@ -115,11 +116,11 @@
                     <h6>CVV</h6>
                     <input type="number" name="cvv" pattern="(\d{3})" required>
                     <hr>
-                    <input type="submit" value="Confirmar" name="confirmar" class="btn btn-warning "> 
-					<!--<input type='hidden' name='Ds_SignatureVersion' value='<?php echo $version; ?>'> 
-                        <input type='hidden' name='Ds_MerchantParameters' value='<?php echo $params; ?>'> 
-                        <input type='hidden' name='Ds_Signature' value='<?php echo $signature; ?>'> 
-                        <input class="btn btn-lg btn-primary btn-block" type="submit" name="submitPayment" value="PAGO SEGURO CON TARJETA" />-->
+                    <input type="submit" value="Confirmar" name="confirmar" class="btn btn-warning ">-->
+					<input type="hidden" name='Ds_SignatureVersion' value='<?php echo $version; ?>'> 
+                    <input type="hidden" name='Ds_MerchantParameters' value='<?php echo $params; ?>'> 
+                    <input type="hidden" name='Ds_Signature' value='<?php echo $signature; ?>'> 
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" name="submitPayment" value="PAGO SEGURO CON TARJETA" />
                 </form>
 
             </div>
@@ -134,7 +135,7 @@
 	//var_dump($_POST);
     if (isset($_POST["confirmar"])) {
 		
-       // header("location:procesar_carrito.php");
+        header("location:procesar_carrito.php");
     }
     ?>
     </div>

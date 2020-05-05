@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,9 +32,48 @@
                     <?php
 					session_start();
                     require_once("../db/db.php");
+									
+					include "apiRedsys.php";  
+					$miObj = new RedsysAPI;
+
+					// Valores de entrada que no hemos cmbiado para ningun ejemplo
+					$name = 'GreatFood';
+					
+					$fuc="999008881";
+					$terminal="1";
+					$moneda="978";
+					$trans="0";
+					$url="http://daw.com/controllers/procesar_carrito.php";
+					$urlOKKO="http://daw.com/controllers/procesar_carrito.php";
+					$id=time();
+					$amount="145";	
+					
+					// Se Rellenan los campos
+					$miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
+					$miObj->setParameter("DS_MERCHANT_ORDER",$id);
+					$miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$fuc);
+					$miObj->setParameter("DS_MERCHANT_CURRENCY",$moneda);
+					$miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$trans);
+					$miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
+					$miObj->setParameter("DS_MERCHANT_MERCHANTURL",$url);
+					$miObj->setParameter("DS_MERCHANT_MERCHANTNAME",$name); 
+					$miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
+					$miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
+
+					//Datos de configuración
+					$version="HMAC_SHA256_V1";
+					$kc = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';//Clave recuperada de CANALES
+					// Se generan los parámetros de la petición
+					$request = "";
+					$params = $miObj->createMerchantParameters();
+					$signature = $miObj->createMerchantSignature($kc);
+					
+					
+					
 					
                     if (isset($_SESSION['dni'])) {
-                        //$_SESSION['fecha_entrega']=$_POST["fecha_entrega"];
+                        $_SESSION['fecha_entrega']=$_POST["fecha_entrega"];
+
                     ?>
                         <a class="nav-link " href="../controllers/area_personal.php" tabindex="-1">
                             Area personal
@@ -71,18 +110,22 @@
     
 
     <!--<form action="" method="POST">-->
-	<form action="tarjeta_intermedio.php" method="POST" id="formfecha">
+	<form action="https://sis-i.redsys.es:25443/sis/realizarPago" method="POST" id="formfecha">
     <hr>
         <div class="form-group" id="login">
-        Fecha Entrega: <input type="date" <?php 
-               $date_format = 'Y-m-d';            
-               $tomorrow = time() + (1 * 24 * 60 * 60);
-               echo "min=\"".gmdate($date_format, $tomorrow)."\"";
-             ?> name="fecha_entrega" class="form-control" id="formfechaentrega" required><br>
         
-       
+        Metodo de Pago: 
+        <select id="pago" name="pago" class="form-control" required>
+          <option value="Tarjeta">Tarjeta</option>
+          <option value="PayPal">PayPal</option>
+          <option value="Bizum">Bizum</option>
+        </select><br>
+					<input type="hidden" name='Ds_SignatureVersion' value='<?php echo $version; ?>'> 
+                    <input type="hidden" name='Ds_MerchantParameters' value='<?php echo $params; ?>'> 
+                    <input type="hidden" name='Ds_Signature' value='<?php echo $signature; ?>'> 
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" name="submitPayment" value="PAGO SEGURO CON TARJETA" />
 					
-        <input type="submit" value="continuar" name="confirmar" class="btn btn-warning ">
+       <!-- <input type="submit" value="Confirmar" name="confirmar" class="btn btn-warning ">-->
     
         </div>
         
@@ -91,6 +134,7 @@
     </div>
     </div>
     </div>
+    <div id='div_session_write'> </div>
 </body>
 
 </html>

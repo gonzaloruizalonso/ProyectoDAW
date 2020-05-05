@@ -20,53 +20,59 @@
    
   </script>
   -->
-  <script type="text/javascript">
+<script type="text/javascript">
     var peticion1;
 
-    if(document.addEventListener){window.addEventListener("load",iniciar)}
-    else if(document.attachEvent){window.attachEvent("onload",iniciar)}
+    if (document.addEventListener) {
+        window.addEventListener("load", iniciar)
+    } else if (document.attachEvent) {
+        window.attachEvent("onload", iniciar)
+    }
 
     function iniciar() {
-      
-      if (window.XMLHttpRequest) { // Mozilla, Safari, ...
-      peticion1 = new XMLHttpRequest();
-      } else if (window.ActiveXObject) { // IE
-      peticion1 = new ActiveXObject("Microsoft.XMLHTTP");
-      }
 
-      if(document.addEventListener){peticion1.addEventListener("readystatechange",muestra)}
-      else if(document.attachEvent){peticion1.attachEvent("onreadystatechange",muestra)}
-
-      peticion1.open("GET","cargarmunicipios.php",true);
-
-      peticion1.setRequestHeader("Content-Type","application/x-www-form-urlencoded");//Esta para XML
-
-      peticion1.send(null);
-    }
-    function muestra() {
-      if (peticion1.readyState==4) {
-        if (peticion1.status==200) {
-          var respuestaXML=peticion1.responseXML;
-          //alert(respuestaXML);
-          var datos=respuestaXML.getElementsByTagName("datos").item(0);
-          var misMunicipios=datos.getElementsByTagName("municipios").item(0);
-          var misCodigos=datos.getElementsByTagName("codigos").item(0);
-          var todosLosMunicipios=misMunicipios.getElementsByTagName("municipio");
-          var todosLosCodigos=misCodigos.getElementsByTagName("codigo");
-          var miselect=document.getElementById("miselect");
-          for (var VnbIndice = 0; VnbIndice < todosLosMunicipios.length; VnbIndice++) {
-            var mm=todosLosMunicipios.item(VnbIndice).textContent;
-            var elemento=document.createElement("option");
-            var valor=document.createTextNode(mm);
-            elemento.appendChild(valor);
-            elemento.setAttribute('value',todosLosCodigos.item(VnbIndice).textContent);
-            miselect.appendChild(elemento);
-          }
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+            peticion1 = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { // IE
+            peticion1 = new ActiveXObject("Microsoft.XMLHTTP");
         }
-      }
+
+        if (document.addEventListener) {
+            peticion1.addEventListener("readystatechange", muestra)
+        } else if (document.attachEvent) {
+            peticion1.attachEvent("onreadystatechange", muestra)
+        }
+
+        peticion1.open("GET", "cargarmunicipios.php", true);
+
+        peticion1.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //Esta para XML
+
+        peticion1.send(null);
     }
 
-  </script>
+    function muestra() {
+        if (peticion1.readyState == 4) {
+            if (peticion1.status == 200) {
+                var respuestaXML = peticion1.responseXML;
+                //alert(respuestaXML);
+                var datos = respuestaXML.getElementsByTagName("datos").item(0);
+                var misMunicipios = datos.getElementsByTagName("municipios").item(0);
+                var misCodigos = datos.getElementsByTagName("codigos").item(0);
+                var todosLosMunicipios = misMunicipios.getElementsByTagName("municipio");
+                var todosLosCodigos = misCodigos.getElementsByTagName("codigo");
+                var miselect = document.getElementById("miselect");
+                for (var VnbIndice = 0; VnbIndice < todosLosMunicipios.length; VnbIndice++) {
+                    var mm = todosLosMunicipios.item(VnbIndice).textContent;
+                    var elemento = document.createElement("option");
+                    var valor = document.createTextNode(mm);
+                    elemento.appendChild(valor);
+                    elemento.setAttribute('value', todosLosCodigos.item(VnbIndice).textContent);
+                    miselect.appendChild(elemento);
+                }
+            }
+        }
+    }
+</script>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -123,24 +129,24 @@
                 <form method="POST" action="procesar_registro.php" id="formularioRegistro">
                     <div class="form-group" id="login">
                         <p>DNI<input type="text" name="dni" class="form-control" pattern="[0-9]{8}[A-Za-z]{1}" title="Formato de DNI incorrecto" required /></p>
-						<p>Contraseña<input type="password" name="password" class="form-control" required /></p>
-                        <p>Nombre:<input type="text" name="nombre" class="form-control" required /></p>
-                        <p>Apellidos:<input type="text" name="apellidos" class="form-control" required /></p>
-                        <p>Direccion:<input type="text" name="direccion" class="form-control" required /></p>
-						<p>Codigo Postal<input type="number" name="cp" class="form-control" pattern="(\d{5})" required /></p>
+                        <p>Contraseña<input type="password" name="password" class="form-control" pattern="[A-Za-z0-9!?-]{6,12}" title="Tu contraseña debe de tener entre 6 y 12 caracteres" required /></p>
+                        <p>Nombre:<input type="text" name="nombre" class="form-control" required title="Su nombre" /></p>
+                        <p>Apellidos:<input type="text" name="apellidos" class="form-control" required title="Su apellido" /></p>
+                        <p>Direccion:<input type="text" name="direccion" class="form-control" required title="Su direccion"/></p>
+                        <p>Codigo Postal<input type="text" name="cp" class="form-control" pattern="[0-9]{5}" required /></p>
                         <p>Municipio:<select id="miselect" name="municipio" class="form-control" required></select></p>
-                        <p>Teléfono:<input type="number" name="telefono" class="form-control" pattern="(\d{9})" required /></p>
+                        <p>Teléfono:<input type="text" name="telefono" class="form-control" pattern="[679]{1}[0-9]{8}" required /></p>
                         <p>Fecha de Nacimiento:<input type="date" name="fecha_nac" class="form-control" pattern="/^(?:(?:(?:0?[1-9]|1\d|2[0-8])[/](?:0?[1-9]|1[0-2])|(?:29|30)[/](?:0?[13-9]|1[0-2])|31[/](?:0?[13578]|1[02]))[/](?:0{2,3}[1-9]|0{1,2}[1-9]\d|0?[1-9]\d{2}|[1-9]\d{3})|29[/]0?2[/](?:\d{1,2}(?:0[48]|[2468][048]|[13579][26])|(?:0?[48]|[13579][26]|[2468][048])00))$/" required /></p>
                         <p>Correo Electrónico<input type="text" name="mail" class="form-control" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required /></p>
-						<input type="submit" value="Regístrate" class="btn btn-warning " />
+                        <input type="submit" value="Regístrate" class="btn btn-warning " />
                         <br>
                     </div>
                 </form>
-				<?php
-					if ($_POST!=null) {
-						require("../models/registro.php");	
-					}
-				?>
+                <?php
+                if ($_POST != null) {
+                    require("../models/registro.php");
+                }
+                ?>
             </div>
         </div>
 
