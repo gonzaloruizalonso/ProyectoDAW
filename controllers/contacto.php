@@ -31,8 +31,11 @@
                 <li class="nav-item ">
                  <?php
           session_start();
+		  require("../recursos/correo/enviarCorreo.php");
           require_once("../db/db.php");
-          
+			error_reporting(0);
+
+		  
           if (isset($_SESSION['dni'])) {
           ?>
             <a class="nav-link " href="area_personal.php" tabindex="-1">
@@ -44,22 +47,7 @@
             Logout
           </a>
         </li>
-      <?php
-
-          } else {
-      ?>
-        <a class="nav-link " href="login.php" tabindex="-1">
-          Login
-        </a>
-        </li>
-
-
-      <?php
-          }
-      ?>
-
-
-            </ul>
+        </ul>
         </div>
     </nav>
     <div id="bienvenida">
@@ -73,10 +61,25 @@
                 <form action="#" method="POST">
                     <div class="form-group" id="login">
                         
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                        <input type="submit" value="Envio" class="btn btn-warning " />
+                                                
+                        <div class="form-group blue-border-focus">
+                          <?php 
+                          if ($_POST!=null) {
+                           if (isset($_POST["enviar"]) && !empty($_POST["consulta"])) {
+                            ?>
+                              <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Enviado!</strong> Su mensaje se ha enviado correctamente.
+                              </div>
+                            <?php
+                            }
+                          }
+                           ?>
+                          <label for="exampleFormControlTextarea5">Mensaje:</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" name="consulta"></textarea>
+                        </div>
                         <br>
-                        <p color="red">*:son obligatorios</p>
+                        <input type="submit" value="Enviar" name="enviar" class="btn btn-warning " />
                     </div>
                 </form>
             </div>
@@ -85,5 +88,84 @@
     </div>
 
 </body>
+<?php
+    if ($_POST!=null) {
+
+      if (isset($_POST["enviar"]) && !empty($_POST["consulta"])) {
+        $nombre=$_SESSION["nombre"];
+        $consulta=$_POST["consulta"];
+        $correo_electronico='contacto.greatfood@gmail.com';
+        $mensaje='<html><body><h4>'.$nombre.'('.$_SESSION['correo'].') ha enviado la siguiente consulta:</h4> <br><br>'.$consulta.'</body></html>';                        
+        
+        enviarCorreo($correo_electronico,'Consulta '.$nombre,$mensaje,$nombre);
+
+        
+
+      } 
+    }
+?>
 
 </html>
+      <?php
+
+          } else {
+      ?>
+        <a class="nav-link " href="login.php" tabindex="-1">
+          Login
+        </a>
+        </li>
+
+</ul>
+        </div>
+    </nav>
+    <div id="bienvenida">
+
+        <div class="card">
+            <div class="card-body ">
+                <h4 class="card-title">Contacto</h4>
+
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  Necesario <strong><a href="../controllers/login.php">iniciar sesion/registrarse</strong></a> Para contactar.
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                   <form action="#" method="POST" disabled>
+                    <div class="form-group" id="login">      
+                        <div class="form-group blue-border-focus">
+                          <label for="exampleFormControlTextarea5" disabled>Mensaje:</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" name="consulta" disabled></textarea>
+                        </div>
+                        <br>
+                        <input type="submit" value="Enviar" name="enviar" class="btn btn-warning " disabled/>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<?php
+    if ($_POST!=null) {
+      if (isset($_POST["envio"]) && !empty($_POST["consulta"])) {
+        $nombre=$_SESSION["nombre"];
+        $consulta=$_POST["consulta"];
+        $correo_electronico='contacto.greatfood@gmail.com';
+        $mensaje='<html><body><h4>'.$nombre.' ha enviado la siguiente consulta:</h4> <br><br>'.$consulta.'</body></html>';                        
+        
+        enviarCorreo($correo_electronico,'Consulta '.$nombre,$mensaje,$nombre);
+      } 
+    } else {
+    
+    }
+?>
+
+</html>
+      <?php
+          }
+      ?>
+
+
+            

@@ -95,9 +95,9 @@
                           
                         <tr>
                             <th class='bg-info' scope='col'>#</th>
-                            <th class='bg-info' scope='col'>Nombre</th>
-                            <th class='bg-info' scope='col'>Cantidad</th>
-                            <th class='bg-info' scope='col'>Precio</th>
+                            <th class='bg-secondary' scope='col'>Nombre</th>
+                            <th class='bg-secondary' scope='col'>Cantidad</th>
+                            <th class='bg-secondary' scope='col'>Precio</th>
                             
                         </tr>";
                             for ($j = 0; $j < sizeof($_SESSION["array2"]); $j++) {

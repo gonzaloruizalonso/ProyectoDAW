@@ -68,4 +68,5 @@ enviarCorreo($correo_electronico,'Pedido completado en GreatFood',$mensaje,$nomb
 $_SESSION['fallo']="no";	
 echo "<script type=\"text/javascript\">location.href='../views/resultado_carrito.php';</script>";
 //header("location:../views/resultado_carrito.php");
+
 ?>

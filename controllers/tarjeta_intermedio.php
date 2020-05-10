@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link " href="#" tabindex="-1">Platos</a>
+                    <a class="nav-link " href="../controllers/platos.php" tabindex="-1">Platos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="../controllers/contacto.php" tabindex="-1">Contacto</a>
@@ -44,9 +44,10 @@
 					$moneda="978";
 					$trans="0";
 					$url="http://daw.com/controllers/procesar_carrito.php";
-					$urlOKKO="http://daw.com/controllers/procesar_carrito.php";
+					$urlOK="http://daw.com/controllers/procesar_carrito.php";
+                    $urlKO="http://daw.com/views/resultado_carritoKO.php";
 					$id=time();
-					$amount="145";	
+					$amount=((int)$_SESSION['preciototal'])*100;	
 					
 					// Se Rellenan los campos
 					$miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
@@ -57,8 +58,8 @@
 					$miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
 					$miObj->setParameter("DS_MERCHANT_MERCHANTURL",$url);
 					$miObj->setParameter("DS_MERCHANT_MERCHANTNAME",$name); 
-					$miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
-					$miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
+					$miObj->setParameter("DS_MERCHANT_URLOK",$urlOK);
+					$miObj->setParameter("DS_MERCHANT_URLKO",$urlKO);
 
 					//Datos de configuración
 					$version="HMAC_SHA256_V1";
@@ -117,8 +118,8 @@
         Metodo de Pago: 
         <select id="pago" name="pago" class="form-control" required>
           <option value="Tarjeta">Tarjeta</option>
-          <option value="PayPal">PayPal</option>
-          <option value="Bizum">Bizum</option>
+          <option value="PayPal" disabled>PayPal</option>
+          <option value="Bizum" disabled>Bizum</option>
         </select><br>
 					<input type="hidden" name='Ds_SignatureVersion' value='<?php echo $version; ?>'> 
                     <input type="hidden" name='Ds_MerchantParameters' value='<?php echo $params; ?>'> 

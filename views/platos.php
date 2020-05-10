@@ -73,6 +73,8 @@
 
 
                                             preciototal = parseInt(preciototal) + (parseInt(JSONPlatos.platos[clave].precio) * parseInt(getCookie(idAux)));
+
+                                            
                                         }
                                     }
                                 }
@@ -80,9 +82,10 @@
                             }
 
                         }
+                        setCookie("pTotal",preciototal,2);
                         $("#buttonaux").before('<p>Total: ' + preciototal + '€</p>');
                         //--------------                                                
-
+						
                     }
 
 
@@ -93,6 +96,8 @@
 </head>
 
 <body>
+
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="../index.php">GreatFood</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -185,6 +190,7 @@
                 <?php
                 ?>
                 <div class="container">
+                     
 
                     <div class="row">
                         <?php
@@ -213,9 +219,15 @@
                                                     var plato = $("#<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>").attr("name");
                                                     if (getCookie(<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>) != null) {
                                                         setCookie(<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>, parseInt(getCookie(<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>)) + 1, 2);
+														/*setCookie('total',getCookie('total')+<?php echo $_SESSION['platos'][$i]['precio'] ?>);
+														alert(cookie);
+														alert(getCookie('total'));*/
                                                     } else {
 
                                                         setCookie(<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>, 1, 2);
+														/*setCookie('total',<?php echo $_SESSION['platos'][$i]['precio'] ?>);
+														alert(cookies);
+														alert(getCookie('total'));*/
                                                     }
                                                     //alert(<?php echo $_SESSION['platos'][$i]['cod_plato'] ?>);
                                                     location.reload();
@@ -236,6 +248,7 @@
                 </form>
             </div>
         </div>
+
 
     </div>
     <footer class="footer">

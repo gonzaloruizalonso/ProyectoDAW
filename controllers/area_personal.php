@@ -77,8 +77,6 @@
         <hr>
         <a href="cambiarContraseña.php" class="btn btn-warning ">Cambiar Contraseña</a><br><br>
         <?php 
-        echo "<script>console.log(" . $_SESSION['resDNI'] . ")</script>";
-        echo "<script>console.log(" . $_SESSION['dni'] . ")</script>";
         if ($_SESSION['resDNI']==$_SESSION['dni']) {
           ?>
         <a href="historial_compras.php" class="btn btn-warning ">Historial Pedidos</a>

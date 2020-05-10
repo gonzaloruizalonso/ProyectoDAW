@@ -1,8 +1,9 @@
 <?php 
 	//Funcion que procesa un carrito y devuelve el repartidor encargado
 	  function procesarCarrito($conn,$fechaentrega,$dni) {
-	  	$fechaActual = date("Y-m-d H:m:s");
-
+	  	//$fechaActual = date("Y-m-d H:m:s");
+		date_default_timezone_set ('Europe/Madrid');
+		$fechaActual = strftime("%Y-%m-%d %H:%M:%S");
 		$sql = "SELECT MAX(cod_pedido) as cod_pedido FROM pedidos";
 		$result = mysqli_query($conn, $sql);
 		$fila = mysqli_fetch_assoc($result);
