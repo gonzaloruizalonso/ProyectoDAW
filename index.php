@@ -31,8 +31,7 @@
         </li>
         <li class="nav-item ">
           <?php
-          //inicio
-		  session_start();
+          session_start();
           require_once("./db/db.php");
           $_SESSION['fallo'] = "no";
 
