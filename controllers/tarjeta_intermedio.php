@@ -43,7 +43,7 @@
 					$terminal="1";
 					$moneda="978";
 					$trans="0";
-					$url="http://daw.com/controllers/procesar_carrito.php";
+					$url="http://daw.com/";
 					$urlOK="http://daw.com/controllers/procesar_carrito.php";
                     $urlKO="http://daw.com/views/resultado_carritoKO.php";
 					$id=time();
