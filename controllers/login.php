@@ -105,7 +105,6 @@
 		<input type="submit" value="Login" class="btn btn-warning "/>
     
 		</div>
-		
 	</form>
   <hr>
       <p class="card-text" style="display: inline;">¿Aún no estás registrado?</p>

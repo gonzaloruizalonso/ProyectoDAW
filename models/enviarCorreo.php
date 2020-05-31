@@ -19,7 +19,7 @@
 		   
 		   $mail->addAddress('galmus94@gmail.com', 'David');
 		   $mail->Subject = 'Titulo';
-		   $mail->Body = 'Viva willyrex';
+		   $mail->Body = 'Envio Correo';
 		   
 		   /* SMTP parameters. */
 		   

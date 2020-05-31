@@ -12,15 +12,6 @@ function procesar($conn){
 	$password=$_POST["password"];
 	$correo_electronico=$_POST["mail"];
 	
-	
-
-
-	/*$sql="SELECT dni from clientes where='$dni'";		
-	$a=mysqli_query($conn, $sql);
-	$b=mysqli_fetch_assoc($a);
-	$c=$b;
-	if ($c==$dni) {*/
-	
 		$sql="INSERT INTO clientes(dni,nombre,apellidos,direccion,codigo_postal,id_municipio,telefono,fecha_nacimiento,correo_electronico) VALUES ('$dni','$nombre','$apellidos','$direccion',$cp,'$municipio','$telefono','$fecha_nac','$correo_electronico')";		
 		
 		if (mysqli_query($conn, $sql)) {
@@ -35,7 +26,6 @@ function procesar($conn){
 		}
 
 		mysqli_close($conn);
-	//}
 }
 		
 ?>

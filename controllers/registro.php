@@ -21,6 +21,27 @@
   </script>
   -->
 <script type="text/javascript">
+    function validar(){
+            abc=document.formularioRegistro.dni.value;
+            dni=abc.substring(0,abc.length-1);
+            let=abc.charAt(abc.length-1);
+            if (!isNaN(let)){
+              alert('Falta la letra');
+              document.formularioRegistro.dni.focus();
+              return false;
+             }else {
+              cadena="TRWAGMYFPDXBNJZSQVHLCKET";
+              posicion = dni % 23;
+              letra = cadena.substring(posicion,posicion+1);
+              if (letra!=let.toUpperCase()){
+                alert("Nif no válido");
+                document.formularioRegistro.dni.focus();
+                return false;
+               }
+             }
+            }
+</script>
+<script type="text/javascript">
     var peticion1;
 
     if (document.addEventListener) {
@@ -104,9 +125,10 @@
             </ul>
         </div>
     </nav>
-    <?php
-    if (isset($_SESSION['fallo'])) {
-        if ($_SESSION['fallo'] == "registro") {;
+    <?php    
+    if (isset($_SESSION['falloregistro'])) {
+        //var_dump($_SESSION['falloregistro']);
+        if ($_SESSION['falloregistro'] == "registro") {
     ?>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>DNI incorrecto</strong> Ya existe un usuario con ese DNI.
@@ -126,9 +148,9 @@
                 ¡Rellena tus datos y pide cuando quieras!
                 <hr>
 
-                <form method="POST" action="procesar_registro.php" id="formularioRegistro">
+                <form method="POST" action="procesar_registro.php" id="formularioRegistro" name="formularioRegistro" onsubmit = "return validar()">
                     <div class="form-group" id="login">
-                        <p>DNI<input type="text" name="dni" class="form-control" pattern="[0-9]{8}[A-Za-z]{1}" title="Formato de DNI incorrecto" required /></p>
+                        <p>DNI<input type="text" name="dni" id="dni" class="form-control" pattern="[0-9]{8}[A-Za-z]{1}" title="Formato de DNI incorrecto" required /></p>
                         <p>Contraseña<input type="password" name="password" class="form-control" pattern="[A-Za-z0-9!?-]{6,12}" title="Tu contraseña debe de tener entre 6 y 12 caracteres" required /></p>
                         <p>Nombre:<input type="text" name="nombre" class="form-control" required title="Su nombre" /></p>
                         <p>Apellidos:<input type="text" name="apellidos" class="form-control" required title="Su apellido" /></p>

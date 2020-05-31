@@ -90,7 +90,6 @@
 </body>
 <?php
     if ($_POST!=null) {
-
       if (isset($_POST["enviar"]) && !empty($_POST["consulta"])) {
         $nombre=$_SESSION["nombre"];
         $consulta=$_POST["consulta"];
@@ -157,8 +156,6 @@
         
         enviarCorreo($correo_electronico,'Consulta '.$nombre,$mensaje,$nombre);
       } 
-    } else {
-    
     }
 ?>
 

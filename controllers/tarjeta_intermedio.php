@@ -125,9 +125,6 @@
                     <input type="hidden" name='Ds_MerchantParameters' value='<?php echo $params; ?>'> 
                     <input type="hidden" name='Ds_Signature' value='<?php echo $signature; ?>'> 
                     <input class="btn btn-lg btn-primary btn-block" type="submit" name="submitPayment" value="PAGO SEGURO CON TARJETA" />
-					
-       <!-- <input type="submit" value="Confirmar" name="confirmar" class="btn btn-warning ">-->
-    
         </div>
         
     </form>
@@ -135,7 +132,8 @@
     </div>
     </div>
     </div>
-    <div id='div_session_write'> </div>
+    <div id='div_session_write'> 
+</div>
 </body>
 
 </html>

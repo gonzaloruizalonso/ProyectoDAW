@@ -18,4 +18,4 @@ if(!isset($_SESSION['dni'])){
      header("location:../index.php");
   }
 
- ?>
+?>

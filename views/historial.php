@@ -45,15 +45,12 @@
                     </a>
                 </li>
             <?php
-
                     } else {
             ?>
                 <a class="nav-link " href="../controllers/login.php" tabindex="-1">
                     Login
                 </a>
                 </li>
-
-
             <?php
                     }
             ?>
@@ -61,13 +58,11 @@
         </div>
     </nav>
     <div id="bienvenida">
-
         <div class="card">
             <div class="card-body ">
                 <h4 class="card-title">Historial</h4>
                 <p class="card-text ">Consulte sus pedidos</p>
                 <?php
-
                 ?>
                 <table class="table table-dark table-bordered">
                     <thead>
@@ -80,10 +75,8 @@
                     </thead>
                     <tbody>
                         <?php
-
                         //Aqui debajo irian el historial
                         //var_dump($array);
-
                         for ($i = 0; $i < sizeof($_SESSION["array1"]); $i++) {
                             echo "<script>console.log(" . $_SESSION["array1"][$i]["cod_pedido"] . ")</script>";
                             echo "<tr>
@@ -92,17 +85,14 @@
                             <td class='bg-primary'>" . $_SESSION["array1"][$i]["fecha_entrega"] . "</td>
                             <td class='bg-primary'>" . $_SESSION["array1"][$i]["precio_total"] . "</td>
                         </tr>
-                          
                         <tr>
                             <th class='bg-info' scope='col'>#</th>
                             <th class='bg-secondary' scope='col'>Nombre</th>
                             <th class='bg-secondary' scope='col'>Cantidad</th>
                             <th class='bg-secondary' scope='col'>Precio</th>
-                            
                         </tr>";
                             for ($j = 0; $j < sizeof($_SESSION["array2"]); $j++) {
                                 if ($_SESSION["array2"][$j]["cod_pedido"] == $_SESSION["array1"][$i]["cod_pedido"]) {
-
                                     echo "<tr>
                                 <th class='bg-info' scope='row'>#</th>
                                 <td class='bg-info'>" . $_SESSION["array2"][$j]["nombre"] . "</td>
@@ -112,16 +102,11 @@
                                 }
                             }
                         }
-
                         ?>
                     </tbody>
                 </table>
-
             </div>
         </div>
-
     </div>
-
 </body>
-
 </html>
