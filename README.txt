@@ -35,7 +35,7 @@ PASOS A SEGUIR PARA EL DESPLIEGUE DE LA APLICACION:
 
 3. Ejecutar el fichero /recursos/greatfood.sql desde la consola de MariaDB/MySQL
 
-3. Configurar los ficheros (si es necesario)
+4. Configurar los ficheros (si es necesario)
   -/db/db.php: cambiar la direccion del servidor, el usuario y la contraseña  (lineas 2, 3 y 4)
   -/controllers/tarjeta_intermedio.php: cambiar las variables $url,$urlOK,$urlKO (lineas 46, 47 y 48)
   -/recursos/correo/enviarCorreo.php: cambiar las variables $mail->Username, $mail->Password y $mail->setFrom (lineas 19, 20 y 21)
